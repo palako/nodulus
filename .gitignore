@@ -137,3 +137,6 @@ fabric.properties
 *.mobileprovision
 *.cer
 *.p12
+
+# Logs
+Logs/
