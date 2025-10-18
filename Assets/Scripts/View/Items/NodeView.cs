@@ -19,7 +19,7 @@ namespace View.Items
         public GameObject CheckmarkPrefab;
 
         public Color NodeColor => GameDef.Get.NodeColor;
-        public Color NodeFinalColor => GameDef.Get.NodeFinalColor;
+        public Color NodeFinalColor => new Color(1f, 0.5f, 0f);
 
         private ScaleScript _nodeScale;
         private Colorizer _colorizer;
