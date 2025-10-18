@@ -128,7 +128,19 @@ namespace View.Game
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void Play(NodeView nodeView)
         {
-            // TODO: currently does nothing, but could do something interesting perhaps
+            if (!enabled) {
+                return;
+            }
+            
+            // Get all connections from the node
+            var connections = nodeView.Node.Connections.ToList();
+            
+            // If there's exactly one connection, automatically perform that move
+            if (connections.Count == 1) {
+                var field = connections[0];
+                var direction = field.Direction;
+                Play(nodeView, direction);
+            }
         }
 
         public void HighlightAll()
