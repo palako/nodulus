@@ -28,7 +28,7 @@ namespace View.Control
         // Item Colors
         // TODO: add color themes
         public Color NodeColor = new Color32(85, 134, 171, 255);
-        public Color NodeFinalColor = new Color32(119, 231, 115, 255);
+        public Color NodeFinalColor = new Color32(255, 140, 0, 255);
         public Color ArcColor = new Color32(155, 182, 181, 255);
         public Color FieldColor = new Color32(45, 67, 75, 90);
 
