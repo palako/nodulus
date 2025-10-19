@@ -1,4 +1,4 @@
-﻿using System;
+¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Game;
@@ -552,6 +552,11 @@ namespace View.Control
 		public void ToggleSfx()
 		{
 			_gameAudio.SfxEnabled = !_gameAudio.SfxEnabled;
+		}
+
+		public void ToggleMinimumMoves()
+		{
+			_navigation.ToggleMinimumMoves();
 		}
 
 		public void ToggleFreeze()
