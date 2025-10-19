@@ -11,6 +11,8 @@ namespace View.Control
     /// </summary>
     public class NavigationScript : MonoBehaviour
     {
+        private const string ShowMinimumMovesKey = "ShowMinimumMoves";
+
         private ScrollView _scrollView;
 
         private Transform _moveDisplay;
@@ -35,6 +37,16 @@ namespace View.Control
         private Vector3 _mainViewStart;
         private Vector3 _settingsStart;
 
+        private bool _showMinimumMoves = true;
+        public bool ShowMinimumMoves
+        {
+            get { return _showMinimumMoves; }
+            set {
+                _showMinimumMoves = value;
+                PlayerPrefs.SetInt(ShowMinimumMovesKey, value ? 1 : 0);
+            }
+        }
+
         private readonly IDictionary<ButtonType, Action<ScrollView>> _buttonActions = 
                 new Dictionary<ButtonType, Action<ScrollView>> {
             { ButtonType.LevelSelect, scrollView => scrollView.EnableScroll() },
@@ -42,6 +54,7 @@ namespace View.Control
             { ButtonType.Settings, scrollView => scrollView.ToggleSettings() },
             { ButtonType.MusicToggle, scrollView => scrollView.ToggleMusic() },
             { ButtonType.SfxToggle, scrollView => scrollView.ToggleSfx() },
+            { ButtonType.MinimumMovesToggle, scrollView => scrollView.ToggleMinimumMoves() },
         };
 
         public bool IsTweening => _buttonSelect.IsTweening;
@@ -74,6 +87,11 @@ namespace View.Control
             _moveDisplay.Translate(_moveDisplayEnd);
             _scrollHelper.Translate(_scrollHelperEnd);
             _buttonSelect.transform.Translate(_buttonSelectEnd);
+            
+            if (!PlayerPrefs.HasKey(ShowMinimumMovesKey)) {
+                PlayerPrefs.SetInt(ShowMinimumMovesKey, 1);
+            }
+            ShowMinimumMoves = PlayerPrefs.GetInt(ShowMinimumMovesKey) == 1;
             
             Show();
         }
@@ -128,6 +146,11 @@ namespace View.Control
                 .setEase(LeanTweenType.easeInOutSine);
                 
             _scrollView.ToggleFreeze();
+        }
+
+        public void ToggleMinimumMoves()
+        {
+            ShowMinimumMoves = !ShowMinimumMoves;
         }
     }
 }
