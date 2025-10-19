@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Data;
 using UnityEngine;
+using View.Items;
 using View.Game;
 
 namespace View.Control
@@ -130,16 +131,16 @@ namespace View.Control
                 switch (direction)
                 {
                     case Direction.Up:
-                        isInDirection = diff.Y > 0;
+                        isInDirection = diff.y > 0;
                         break;
                     case Direction.Down:
-                        isInDirection = diff.Y < 0;
+                        isInDirection = diff.y < 0;
                         break;
                     case Direction.Left:
-                        isInDirection = diff.X < 0;
+                        isInDirection = diff.x < 0;
                         break;
                     case Direction.Right:
-                        isInDirection = diff.X > 0;
+                        isInDirection = diff.x > 0;
                         break;
                 }
 
@@ -149,17 +150,17 @@ namespace View.Control
                 }
 
                 // Calculate distance (Manhattan distance for grid-based movement)
-                float distance = Mathf.Abs(diff.X) + Mathf.Abs(diff.Y);
+                float distance = Mathf.Abs(diff.x) + Mathf.Abs(diff.y);
 
                 // For primary axis movement, prioritize nodes that are more aligned with the direction
                 float alignmentPenalty = 0f;
                 if (direction.IsHorizontal())
                 {
-                    alignmentPenalty = Mathf.Abs(diff.Y) * 0.5f;
+                    alignmentPenalty = Mathf.Abs(diff.y) * 0.5f;
                 }
                 else if (direction.IsVertical())
                 {
-                    alignmentPenalty = Mathf.Abs(diff.X) * 0.5f;
+                    alignmentPenalty = Mathf.Abs(diff.x) * 0.5f;
                 }
 
                 float totalDistance = distance + alignmentPenalty;

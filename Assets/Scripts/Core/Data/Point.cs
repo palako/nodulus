@@ -51,6 +51,16 @@ namespace Core.Data
             unchecked { return (x * 397) ^ y; }
         }
 
+        public static bool operator ==(Point p1, Point p2)
+        {
+            return p1.Equals(p2);
+        }
+
+        public static bool operator !=(Point p1, Point p2)
+        {
+            return !p1.Equals(p2);
+        }
+
         public override string ToString()
         {
             return $"({x},{y})";
