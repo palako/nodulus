@@ -1,4 +1,4 @@
-¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Game;
@@ -59,6 +59,7 @@ namespace View.Control
 				var map = new Dictionary<string, string> {
 					["MusicToggleText"] = "music",
 					["SfxToggleText"] = "sfx",
+					["MinimumMovesToggleText"] = "minimumMoves",
 					["CreditText"] = "credit",
 					["VersionText"] = "version"
 				};
