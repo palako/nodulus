@@ -19,27 +19,33 @@ localization:
   english:
     music: Music
     sfx: Sound Effects
+    minimumMoves: Show Minimum Moves
     credit: A game by Hyperparticle
     version: v1.1.1
   chinese:
     music: 音乐
     sfx: 音效
+    minimumMoves: 显示最少步数
     credit: 本游戏由Hyperparticle开发
     version: 版本1.1.1
   japanese:
+    minimumMoves: 最小移動数を表示
   french:
     music: Musique
     sfx: Effets sonores
+    minimumMoves: Afficher les mouvements minimums
     credit: Un jeu de Hyperparticle
     version: v1.1.1
   spanish:
     music: Música
     sfx: Efectos de sonido
+    minimumMoves: Mostrar movimientos mínimos
     credit: Un juego de Hyperparticle.
     version: v1.1.1  
   russian:
     music: Музыка
     sfx: Звуковые эффекты
+    minimumMoves: Показать минимум ходов
     credit: Игра от Hyperparticle
     version: в 1.1.1
 

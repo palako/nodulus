@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +12,7 @@ namespace View.Control
         private Text _moveText;
         private Text _highscoreText;
         private Transform _highscoreDisplay;
+        private NavigationScript _navigationScript;
 
         // TODO: make configurable
         private const float TransitionTime = 1f;
@@ -27,6 +28,7 @@ namespace View.Control
             _moveText = GameObject.FindGameObjectWithTag("MoveText").GetComponent<Text>();
             _highscoreText = GameObject.FindGameObjectWithTag("HighscoreText").GetComponent<Text>();
             _highscoreDisplay = GameObject.FindGameObjectWithTag("HighscoreDisplay").transform;
+            _navigationScript = FindObjectOfType<NavigationScript>();
             
             _highscoreDisplayStart = _highscoreDisplay.localPosition;
         }
@@ -65,7 +67,7 @@ namespace View.Control
             }
             
 //            if (!LeanTween.isTweening(_highscoreDisplay.gameObject)) {
-                if (highscore == 9999) {
+                if (highscore == 9999 || (_navigationScript != null && !_navigationScript.ShowMinimumMoves)) {
                     LeanTween.cancel(_highscoreDisplay.gameObject);
                     LeanTween.moveLocal(_highscoreDisplay.gameObject, _highscoreDisplayStart + _highscoreDisplayEnd, TransitionTime)
                         .setDelay(TransitionDelay)
