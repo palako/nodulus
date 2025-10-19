@@ -9,6 +9,7 @@ namespace View.Control
     {
         private const string MusicStatusKey = "music.status";
         private const string SfxStatusKey = "sfx.status";
+        private const string ShowMinimumMovesKey = "ShowMinimumMoves";
         
         private const float MusicVolume = 0.2f;
         
@@ -42,6 +43,16 @@ namespace View.Control
             }
         }
 
+        private bool _showMinimumMoves = true;
+        public bool ShowMinimumMoves
+        {
+            get { return _showMinimumMoves; }
+            set {
+                _showMinimumMoves = value;
+                PlayerPrefs.SetInt(ShowMinimumMovesKey, value ? 1 : 0);
+            }
+        }
+
         private void Start()
         {
             StartMusic();
@@ -52,9 +63,13 @@ namespace View.Control
             if (!PlayerPrefs.HasKey(SfxStatusKey)) {
                 PlayerPrefs.SetInt(SfxStatusKey, 0);
             }
+            if (!PlayerPrefs.HasKey(ShowMinimumMovesKey)) {
+                PlayerPrefs.SetInt(ShowMinimumMovesKey, 1);
+            }
 
             MusicEnabled = PlayerPrefs.GetInt(MusicStatusKey) == 0;
             SfxEnabled = PlayerPrefs.GetInt(SfxStatusKey) == 0;
+            ShowMinimumMoves = PlayerPrefs.GetInt(ShowMinimumMovesKey) == 1;
         }
 
         /// <summary>
