@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,7 +65,7 @@ namespace View.Control
             }
             
 //            if (!LeanTween.isTweening(_highscoreDisplay.gameObject)) {
-                if (highscore == 9999) {
+                if (highscore == 9999 || !Model.GameSettings.ShowMinimumMoves) {
                     LeanTween.cancel(_highscoreDisplay.gameObject);
                     LeanTween.moveLocal(_highscoreDisplay.gameObject, _highscoreDisplayStart + _highscoreDisplayEnd, TransitionTime)
                         .setDelay(TransitionDelay)
