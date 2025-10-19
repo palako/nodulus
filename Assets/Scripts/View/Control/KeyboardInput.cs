@@ -30,57 +30,13 @@ namespace View.Control
             }
         }
 
-        private void Update()
+        public void MoveCursor(Direction direction)
         {
             if (!enabled || _currentNode == null)
             {
                 return;
             }
 
-            // Check for Shift + Arrow keys (rotation)
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    RotateNode(Direction.Up);
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    RotateNode(Direction.Down);
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    RotateNode(Direction.Left);
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    RotateNode(Direction.Right);
-                }
-            }
-            // Check for Arrow keys alone (cursor movement)
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    MoveCursor(Direction.Up);
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    MoveCursor(Direction.Down);
-                }
-                else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    MoveCursor(Direction.Left);
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    MoveCursor(Direction.Right);
-                }
-            }
-        }
-
-        private void MoveCursor(Direction direction)
-        {
             var nextNode = FindNextNodeInDirection(_currentNode.Position, direction);
 
             if (nextNode != null)
@@ -98,8 +54,13 @@ namespace View.Control
             }
         }
 
-        private void RotateNode(Direction direction)
+        public void RotateNode(Direction direction)
         {
+            if (!enabled || _currentNode == null)
+            {
+                return;
+            }
+
             if (_boardAction != null && _currentNode != null)
             {
                 _boardAction.Play(_currentNode, direction);
@@ -188,24 +149,6 @@ namespace View.Control
             if (_currentNode != null)
             {
                 _cursorIndicator = _currentNode.gameObject.AddComponent<CursorIndicator>();
-                _cursorIndicator.Show();
-            }
-        }
-
-        private void OnDisable()
-        {
-            // Hide cursor when input is disabled
-            if (_cursorIndicator != null)
-            {
-                _cursorIndicator.Hide();
-            }
-        }
-
-        private void OnEnable()
-        {
-            // Show cursor when input is enabled
-            if (_cursorIndicator != null)
-            {
                 _cursorIndicator.Show();
             }
         }
